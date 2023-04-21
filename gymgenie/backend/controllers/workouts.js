@@ -19,19 +19,19 @@ const db = require('../models')
 /* Routes
 --------------------------------------------------------------- */
 // Index Route (GET/Read): Will display all workouts
-router.get('/workouts', function (req, res) {
+router.get('/workouts/workoutId', function (req, res) {
     db.Workout.find({})
         .then(workouts => res.json(workouts))
 })
 
 // Create Route (POST/Create): This route receives the POST request sent from the new route,
-router.post('/workouts', (req, res) => {
+router.post('/', (req, res) => {
     db.Workout.create(req.body)
         .then(workouts => res.json(workouts))
 })
 
 // finds workout by id
-router.get('/workouts/:id', function (req, res) {
+router.get('/:id', function (req, res) {
     db.Workout.findById(req.params.id)
         .then(workout => res.json(workout))
 })
