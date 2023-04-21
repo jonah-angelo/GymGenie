@@ -12,7 +12,7 @@ const db = require('./models');
 
 /* Require the routes in the controllers folder
 --------------------------------------------------------------- */
-const commentsCtrl = require('./controllers/notes')
+const workoutsCtrl = require('./controllers/workouts')
 
 
 /* Create the Express app
@@ -31,7 +31,7 @@ app.use(express.json())
 --------------------------------------------------------------- */
 // This tells our app to look at the `controllers/comments.js` file 
 // to handle all routes that begin with `localhost:3000/api/applications`
-app.use('/api/notes', notesCtrl)
+app.use('/api/workouts', workoutsCtrl)
 
 
 /* Tell the app to listen on the specified port
@@ -39,3 +39,4 @@ app.use('/api/notes', notesCtrl)
 app.listen(process.env.PORT, function () {
     console.log('Express is listening to port', process.env.PORT);
 });
+
