@@ -12,3 +12,8 @@ module.exports = {
     Workout: require('./Workout'),
 }
 
+// Export models and seed data to `server.js`
+module.exports = {
+    Note: require('./note'),
+    User: require('./user')
+}

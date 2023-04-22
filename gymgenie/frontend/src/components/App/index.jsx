@@ -6,9 +6,23 @@ import AboutPage from '../AboutPage'
 import './styles.css'
 
 function App() {
+  const [exercises, setExercises] = useState([])
+
   useEffect(() => {
-    console.log('App mounted')
+    async function fetchExercises() {
+      const res = await fetch(`https://api.api-ninjas.com/v1/exercises?muscle=biceps` , {
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Api-Key': import.meta.env.VITE_API_KEY
+          }
+      })
+      const data = await res.json()
+      console.log(data)
+      setExercises(data)
+    }
+    fetchExercises()
   }, [])
+
   return (
     <> 
       <nav className="bg-sky-800 shadow-lg">
