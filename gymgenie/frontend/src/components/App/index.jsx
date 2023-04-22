@@ -6,10 +6,12 @@ import AboutPage from '../AboutPage'
 import './styles.css'
 
 function App() {
-
+  useEffect(() => {
+    console.log('App mounted')
+  }, [])
   return (
     <> 
-      <nav className="bg-sky-600 shadow-lg">
+      <nav className="bg-sky-800 shadow-lg">
         <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
           <div className="relative flex items-center justify-between h-16">
             <div className="flex-shrink-0">
