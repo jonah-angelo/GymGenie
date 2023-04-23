@@ -6,22 +6,23 @@ import AboutPage from '../AboutPage'
 import './styles.css'
 
 function App() {
-  const [exercises, setExercises] = useState([])
+  // const [exercises, setExercises] = useState([])
+  // // const [muscle, setMuscle] = useState('')
+  // useEffect(() => {
+  //   async function fetchExercises() {
+  //     const res = await fetch(`https://api.api-ninjas.com/v1/exercises?muscle=${muscle}&difficulty=${difficulty}` , {
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //         'X-Api-Key': import.meta.env.VITE_API_KEY
+  //         }
+  //     })
+  //     const data = await res.json()
+  //     console.log(data)
+  //     setExercises(data)
 
-  useEffect(() => {
-    async function fetchExercises() {
-      const res = await fetch(`https://api.api-ninjas.com/v1/exercises?muscle=biceps` , {
-        headers: {
-          'Content-Type': 'application/json',
-          'X-Api-Key': import.meta.env.VITE_API_KEY
-          }
-      })
-      const data = await res.json()
-      console.log(data)
-      setExercises(data)
-    }
-    fetchExercises()
-  }, [])
+  //   }
+  //   fetchExercises()
+  // }, [])
 
   return (
     <> 
