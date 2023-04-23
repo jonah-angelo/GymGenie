@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import HomePage from '../HomePage'
 import DetailsPage from '../DetailsPage'
 import AboutPage from '../AboutPage'
+import WorkoutForm from '../WorkoutForm'
 import './styles.css'
 
 function App() {
@@ -49,6 +50,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/details/:id" element={<DetailsPage />} />
         <Route path="/about" element={<AboutPage />} />
+        <Route path="/WorkoutForm" element={<WorkoutForm />} />
       </Routes>
     </>
     
