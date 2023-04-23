@@ -44,7 +44,7 @@ router.post('/signup', (req, res) => {
 // LOG IN (log into a user account)
 router.post('/login', async (req, res) => {
     // attempt to find the user by their email in the database
-    const foundUser = await User.findOne({ email: req.body.email })
+    const foundUser = await db.User.findOne({ email: req.body.email })
     // check to:
     // 1. make sure the user was found in the database
     // 2. make sure the user entered in the correct password
@@ -60,6 +60,12 @@ router.post('/login', async (req, res) => {
     } else {
         res.sendStatus(401)
     }
+})
+
+// GET USER (get the user's information)
+router.get('/', async (req, res) => {
+    db.User.find({})
+        .then(users => res.json(users))
 })
 
 /* Export these routes so that they are accessible in `server.js`

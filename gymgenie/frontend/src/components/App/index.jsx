@@ -5,6 +5,7 @@ import DetailsPage from '../DetailsPage'
 import AboutPage from '../AboutPage'
 import WorkoutForm from '../WorkoutForm'
 import './styles.css'
+import AuthFormPage from '../AuthFormPage'
 
 function App() {
   // const [exercises, setExercises] = useState([])
@@ -51,6 +52,7 @@ function App() {
         <Route path="/details/:id" element={<DetailsPage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/WorkoutForm" element={<WorkoutForm />} />
+        <Route path="/auth/:formType" element={<AuthFormPage />} />
       </Routes>
     </>
     
