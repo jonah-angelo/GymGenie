@@ -14,6 +14,7 @@ const db = require('./models');
 --------------------------------------------------------------- */
 const workoutsCtrl = require('./controllers/workouts')
 const usersCtrl = require('./controllers/users')
+const notesCtrl = require('./controllers/notes')
 
 
 /* Create the Express app
@@ -32,8 +33,25 @@ app.use(express.json())
 --------------------------------------------------------------- */
 // This tells our app to look at the `controllers/comments.js` file 
 // to handle all routes that begin with `localhost:3000/api/applications`
-app.use('/api/workouts', workoutsCtrl)
-app.use('/api/users', usersCtrl)
+app.use('/workouts', workoutsCtrl)
+app.use('/users', usersCtrl)
+app.use('/notes', notesCtrl)
+
+app.get('/seed', function (req, res) {
+    // Remove any existing songs
+    db.Exercise.deleteMany({})
+        .then(removedExercises => {
+            console.log(`Removed ${removedExercises.length} songs`)
+
+            // Seed the songs collection with the seed data
+            db.Exercise.insertMany(db.seedExercises)
+                .then(addedExercises => {
+                    console.log(`Added ${addedExercises.length} exercises`)
+                    res.json(addedExercises)
+                })
+        })
+});
+
 
 /* Tell the app to listen on the specified port
 --------------------------------------------------------------- */

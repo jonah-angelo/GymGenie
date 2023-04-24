@@ -20,25 +20,48 @@ const db = require('../models')
 /* Routes
 --------------------------------------------------------------- */
 // Index Route (GET/Read): Will display all comments
-router.get('/workout/:workoutId', function (req, res) {
-    db.Workout.find({ workoutId: req.params.workoutId })
-        .then(notes => res.json(notes))
-})
+router.get('/', (req, res) => {
+    db.Workout.find({}, { notes: true, _id: false })
+        .then(workouts => {
+            // format query results to appear in one array, 
+            // rather than an array of objects containing arrays 
+            const flatList = []
+            for (let workout of workouts) {
+                flatList.push(...workout.notes)
+            }
+            res.json({
+                reviews: flatList
+            })
+        })
+});
 
 // Create Route (POST/Create): This route receives the POST request sent from the new route,
 // creates a new comment document using the form data, 
 // and redirects the user to the new comment's show page
-router.post('/', (req, res) => {
-    db.Workout.create(req.body)
+router.post('/create/:workoutId', (req, res) => {
+    db.Workout.findByIdAndUpdate(
+        req.params.workoutId,
+        { $push: { notes: req.body } },
+        { new: true }
+        )
         .then(notes => res.json(notes))
 })
 
 // Show Route (GET/Read): Will display an individual comment document
 // using the URL parameter (which is the document _id)
-router.get('/:id', function (req, res) {
-    db.Workout.findById(req.params.id)
-        .then(note => res.json(note))
-})
+router.get('/:id', (req, res) => {
+    db.Workout.findOne(
+        { 'notes._id': req.params.id },
+        { 'notes.$': true, _id: false }
+    )
+        .then(workout => {
+            // format query results to appear in one object, 
+            // rather than an object containing an array of one object
+            res.json({
+                review: workout.notes
+            })
+        })
+});
 
 // Update Route (PUT/Update): This route receives the PUT request sent from the edit route, 
 // edits the specified comment document using the form data,
@@ -55,8 +78,12 @@ router.put('/:id', (req, res) => {
 // Destroy Route (DELETE/Delete): This route deletes a comment document 
 // using the URL parameter (which will always be the comment document's ID)
 router.delete('/:id', (req, res) => {
-    db.Workout.findByIdAndRemove(req.params.id)
-        .then(() => res.send('You deleted comment ' + req.params.id))
+    db.Workout.findOneAndUpdate(
+        { 'notes._id': req.params.id },
+        { $pull: { notes: { _id: req.params.id } } },
+        { new: true }
+    )
+        .then(() => res.send('You deleted note ' + req.params.id))
 })
 
 

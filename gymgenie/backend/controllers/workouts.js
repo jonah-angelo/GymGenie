@@ -19,7 +19,7 @@ const db = require('../models')
 /* Routes
 --------------------------------------------------------------- */
 // Index Route (GET/Read): Will display all workouts
-router.get('/workouts/workoutId', function (req, res) {
+router.get('/workouts', function (req, res) {
     db.Workout.find({})
         .then(workouts => res.json(workouts))
 })
@@ -37,9 +37,19 @@ router.get('/:id', function (req, res) {
 })
 
 // Workout Delete Route 
-router.delete('/workouts/:id', (req, res) => {
+router.delete('/:id', (req, res) => {
     db.Workout.findByIdAndRemove(req.params.id)
         .then(() => res.send('You deleted workout ' + req.params.id))
+})
+
+// Workout Update Route
+router.put('/:id', (req, res) => {
+    db.Workout.findByIdAndUpdate(
+        req.params.id,
+        req.body,
+        { new: true }
+    )
+        .then(workout => res.json(workout))
 })
 
 module.exports = router
