@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { getExercises } from '../../../utils/backend';
 import { Link } from 'react-router-dom';
+import Exercise from '../Exercise';
 
 export default function ExercisePage() {
     const [exercises, setExercises] = useState([]);
@@ -18,43 +19,38 @@ export default function ExercisePage() {
         });
     }, []);
 
-    const indexOfLastExercise = page * exercisesPerPage;
-    const indexOfFirstExercise = indexOfLastExercise - exercisesPerPage;
-    const currentExercises = exercises.slice(indexOfFirstExercise, indexOfLastExercise);
+    const lastExercise = page * exercisesPerPage;
+    const firstExercise = lastExercise - exercisesPerPage;
+    const currentExercises = exercises.slice(firstExercise, lastExercise);
 
     let exerciseList = <div>Loading...</div>;
 
+    if (currentExercises.length > 0) {
+        exerciseList = currentExercises.map((exercise, i) => {
+            return <Exercise key={i} exerciseData={exercise} />;
+        });
+    }
 
-    
+    function nextPage() {
+        setPage(page + 1);
+    }
+
+    function prevPage() {
+        setPage(page - 1);
+    }
+
 
     return (
         <div>
-        <h1 className="text-center text-5xl mt-10 mb-9">Browse Exercises</h1>
-        <div className="bg-grey"></div>
-        <div className="flex flex-wrap justify-center">
-            {exercises.map((exercise) => (
-                <div className="max-w-sm rounded overflow-hidden shadow-lg m-4">
-                    <div className="px-6 py-4">
-                        <div className="font-bold text-xl mb-2">{exercise.name}</div>
-                        <p className="text-gray-700 text-base">
-                            {exercise.description}
-                        </p>
-                        <p className="text-gray-700 text-base">
-                            {exercise.muscle}
-                        </p>
-                    </div>
-                    <div className="px-6 pt-4 pb-2">
-                        <Link to={`/exercises/${exercise.id}`}>
-                            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                                View Exercise
-                            </button>
-                        </Link>
-                    </div>
+            <h1 className="text-center text-5xl mt-10 mb-9">Browse Exercises</h1>
+            <div className="flex justify-center">
+                <div className="grid grid-cols-3 gap-4">
+                    {exerciseList}
+                    {page > 1 ? <button onClick={prevPage}>Previous Page</button> : null}
+                    {currentExercises.length === exercisesPerPage ? <button onClick={nextPage}>Next Page</button> : null}
                 </div>
-            ))}
-
+            </div>
         </div>
-        </div>
-
+   
     )
 }

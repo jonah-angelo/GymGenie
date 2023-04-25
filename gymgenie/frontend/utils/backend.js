@@ -14,6 +14,5 @@ export async function logIn(user) {
 
 export async function getExercises() {
     const { data }  = await axios.get('/api/exercises')
-    console.log(data)
     return data
 }

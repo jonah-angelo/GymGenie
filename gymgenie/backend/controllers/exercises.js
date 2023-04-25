@@ -24,7 +24,6 @@ router.get('/', (req, res) => {
     db.Exercise.find({})
         .then(exercises => {
             res.json(exercises)
-            console.log(exercises)
             })
         })
 
