@@ -6,25 +6,9 @@ import AboutPage from '../AboutPage'
 import WorkoutForm from '../WorkoutForm'
 import './styles.css'
 import AuthFormPage from '../AuthFormPage'
+import ExercisePage from '../ExercisePage'
 
 function App() {
-  // const [exercises, setExercises] = useState([])
-  // // const [muscle, setMuscle] = useState('')
-  // useEffect(() => {
-  //   async function fetchExercises() {
-  //     const res = await fetch(`https://api.api-ninjas.com/v1/exercises?muscle=${muscle}&difficulty=${difficulty}` , {
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //         'X-Api-Key': import.meta.env.VITE_API_KEY
-  //         }
-  //     })
-  //     const data = await res.json()
-  //     console.log(data)
-  //     setExercises(data)
-
-  //   }
-  //   fetchExercises()
-  // }, [])
 
   return (
     <> 
@@ -41,6 +25,9 @@ function App() {
                 <li>
                   <Link to="/about" className="text-white px-3 py-2 rounded-md text-sm font-medium"> About </Link>
                 </li>
+                <li clas>
+                  <Link to="/exercises" className="text-white px-3 py-2 rounded-md text-sm font-medium"> Exercises </Link>
+                </li>
               </ul>
             </div>
           </div>
@@ -53,6 +40,7 @@ function App() {
         <Route path="/about" element={<AboutPage />} />
         <Route path="/WorkoutForm" element={<WorkoutForm />} />
         <Route path="/auth/:formType" element={<AuthFormPage />} />
+        <Route path="/exercises" element={<ExercisePage />} />
       </Routes>
     </>
     

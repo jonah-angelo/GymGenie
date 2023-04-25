@@ -14,5 +14,5 @@ module.exports = {
     Workout: require('./Workout'),
     User: require('./user'),
     Exercise: require('./exercise'),
-    seedExercises: require('./seed')
+    seedExercises: require('./seed'),
 }

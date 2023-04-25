@@ -6,7 +6,7 @@ const exerciseSchema = new mongoose.Schema({
     muscle: { type: String, required: true },
     equipment: { type: String, required: true },
     difficulty: { type: String, required: true },
-    instructions: { type: String, required: true }
+    instructions: { type: String}
 });
 
-module.exports = exerciseSchema;
+module.exports = mongoose.model('Exercise', exerciseSchema);

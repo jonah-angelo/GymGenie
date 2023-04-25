@@ -15,6 +15,7 @@ const db = require('./models');
 const workoutsCtrl = require('./controllers/workouts')
 const usersCtrl = require('./controllers/users')
 const notesCtrl = require('./controllers/notes')
+const exercisesCtrl = require('./controllers/exercises')
 
 
 /* Create the Express app
@@ -36,14 +37,15 @@ app.use(express.json())
 app.use('/workouts', workoutsCtrl)
 app.use('/users', usersCtrl)
 app.use('/notes', notesCtrl)
+app.use('/exercises', exercisesCtrl)
 
 app.get('/seed', function (req, res) {
-    // Remove any existing songs
+    // Remove any existing pets
     db.Exercise.deleteMany({})
         .then(removedExercises => {
-            console.log(`Removed ${removedExercises.length} songs`)
+            console.log(`Removed ${removedExercises.deletedCount} exercises`)
 
-            // Seed the songs collection with the seed data
+            // Seed the pets collection with the seed data
             db.Exercise.insertMany(db.seedExercises)
                 .then(addedExercises => {
                     console.log(`Added ${addedExercises.length} exercises`)
