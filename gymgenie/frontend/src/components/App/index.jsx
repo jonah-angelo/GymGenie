@@ -7,9 +7,11 @@ import WorkoutForm from '../WorkoutForm'
 import './styles.css'
 import AuthFormPage from '../AuthFormPage'
 import ExercisePage from '../ExercisePage'
+import ExerciseDetails from '../ExerciseDetails'
 
 function App() {
   const [workouts, setWorkouts] = useState([])
+  const [ExerciseDetails, setExerciseDetails] = useState()
 
 
 
@@ -41,9 +43,10 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/details/:id" element={<DetailsPage />} />
         <Route path="/about" element={<AboutPage />} />
-        <Route path="/WorkoutForm" element={<WorkoutForm />} />
+        <Route path="/WorkoutForm" element={<WorkoutForm exerciseData={ExerciseDetails}/>} />
         <Route path="/auth/:formType" element={<AuthFormPage />} />
         <Route path="/exercises" element={<ExercisePage />} />
+        <Route path="/exercise-details/:id" element={<ExerciseDetails exerciseData={ExerciseDetails} updateExerciseData={setExerciseDetails}/>} />
       </Routes>
     </>
     

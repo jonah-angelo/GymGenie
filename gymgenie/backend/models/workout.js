@@ -6,18 +6,18 @@ const workoutSchema = new mongoose.Schema({
     body: String,
     date: { type: Date, default: Date.now },
     exerciseDate: { type: Date },
-    exercises: { 
+    exercises: [{ 
         type: mongoose.Schema.Types.ObjectId,
         required: true,
         ref: 'Exercise',
-    },
+    }],
 
     notes: [noteSchema],
-    userId: {
-        type: mongoose.Schema.Types.ObjectId,
-        required: true,
-        ref: 'User',
-    },
+    // userId: {
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     required: true,
+    //     ref: 'User',
+    // },
 });
 
 module.exports = mongoose.model('Workout', workoutSchema);
