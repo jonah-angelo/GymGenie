@@ -34,10 +34,10 @@ app.use(express.json())
 --------------------------------------------------------------- */
 // This tells our app to look at the `controllers/comments.js` file 
 // to handle all routes that begin with `localhost:3000/api/applications`
-app.use('/workouts', workoutsCtrl)
-app.use('/users', usersCtrl)
-app.use('/notes', notesCtrl)
-app.use('/exercises', exercisesCtrl)
+app.use('/api/workouts', workoutsCtrl)
+app.use('/api/users', usersCtrl)
+app.use('/api/notes', notesCtrl)
+app.use('/api/exercises', exercisesCtrl)
 
 app.get('/seed', function (req, res) {
     // Remove any existing pets

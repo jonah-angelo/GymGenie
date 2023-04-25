@@ -9,6 +9,9 @@ import AuthFormPage from '../AuthFormPage'
 import ExercisePage from '../ExercisePage'
 
 function App() {
+  const [workouts, setWorkouts] = useState([])
+
+
 
   return (
     <> 
@@ -22,11 +25,11 @@ function App() {
             </div>
             <div className="flex-grow">
               <ul className="flex justify-end">
-                <li>
-                  <Link to="/about" className="text-white px-3 py-2 rounded-md text-sm font-medium"> About </Link>
+                <li className='mr-4'>
+                  <Link to="/about" className="text-white px-3 py-2 rounded-md text-sm font-medium bg-zinc-600 hover:bg-zinc-400 ease hover:shadow-md"> About </Link>
                 </li>
-                <li clas>
-                  <Link to="/exercises" className="text-white px-3 py-2 rounded-md text-sm font-medium"> Exercises </Link>
+                <li>
+                  <Link to="/exercises" className="text-white px-3 py-2 rounded-md text-sm font-medium bg-zinc-600 bg-zinc-600 hover:bg-zinc-400 hover:shadow-md"> Exercises </Link>
                 </li>
               </ul>
             </div>

@@ -11,3 +11,9 @@ export async function logIn(user) {
     const { data } = await axios.put('/api/users/login', user)
     return data
 }
+
+export async function getExercises() {
+    const { data }  = await axios.get('/api/exercises')
+    console.log(data)
+    return data
+}
