@@ -4,23 +4,10 @@ import { Link } from 'react-router-dom';
 import Exercise from '../Exercise';
 
 export default function ExercisePage({ exercises, updateExerciseData }) {
-    // const [exercises, setExercises] = useState([]);
     const [page, setPage] = useState(1);
-    // const [exerciseDetails, setExerciseDetails] = useState();
     const [exercisesPerPage, setExercisesPerPage] = useState(10);
     const [query, setQuery] = useState('');
     const [queryResults, setQueryResults] = useState([]);
-    const [detailsPage, setDetailsPage] = useState(false);
-
-    // useEffect(() => {
-    //     getExercises()
-    //     .then((exercises) => {
-    //         setExercises(exercises);
-    //     })
-    //     .catch((error) => {
-    //         console.error(error);
-    //     });
-    // }, []);
 
 
     // Pagination

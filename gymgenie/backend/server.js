@@ -13,7 +13,7 @@ const db = require('./models');
 /* Require the routes in the controllers folder
 --------------------------------------------------------------- */
 const usersCtrl = require('./controllers/users')
-const notesCtrl = require('./controllers/notes')
+const commentsCtrl = require('./controllers/comments')
 const exercisesCtrl = require('./controllers/exercises')
 
 
@@ -34,7 +34,7 @@ app.use(express.json())
 // This tells our app to look at the `controllers/comments.js` file 
 // to handle all routes that begin with `localhost:3000/api/applications`
 app.use('/api/users', usersCtrl)
-app.use('/api/notes', notesCtrl)
+app.use('/api/comments', commentsCtrl)
 app.use('/api/exercises', exercisesCtrl)
 
 app.get('/seed', function (req, res) {

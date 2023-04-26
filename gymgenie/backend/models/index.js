@@ -13,5 +13,6 @@ const mongodbUri = process.env.MONGODBURI;
 module.exports = {
     User: require('./user'),
     Exercise: require('./exercise'),
+    Comment: require('./comment'),
     seedExercises: require('./seed'),
 }

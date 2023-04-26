@@ -1,16 +1,23 @@
+import { useState, useEffect } from "react"
+import { postComment, getComments } from "../../../utils/backend"
+import Comment from "../Comment"
 
-import { useState } from "react"
-import { createNote, getNotes } from "../../../utils/backend"
-
-export default function commentSection({ notes, exercises, updateNotes }) {
-    // Save comment element to state so the component re-renders when I add or delete comments
+export default function commentSection({ exerciseId }) {
+    // Save comments queried from the database in state
+    const [comments, setComments] = useState([])
     const [showCreateForm, setShowCreateForm] = useState(false)
     const [createFormData, setCreateFormData] = useState({
-        title: '',
+        name: '',
         content: ''
     })
+    // Query the database for all comments that pertain to this artwork
+    useEffect(() => {
+        getComments(exerciseId)
+            .then(comments => setComments(comments))
+    }, [])
 
-    // Update the form fields as teh user types
+
+    // Update the form fields as the user types
     function handleInputChange(event) {
         setCreateFormData({
             ...createFormData,
@@ -23,45 +30,38 @@ export default function commentSection({ notes, exercises, updateNotes }) {
         setShowCreateForm(!showCreateForm)
     }
 
+    // Update the comments in the comment section after a database transaction
+    function refreshComments() {
+        getComments(exerciseId)
+            .then(newCommentData => setComments(newCommentData))
+    }
+
     // Execute form submission logic
     function handleSubmit(event) {
         // prevent the page from reloading
         event.preventDefault()
         // clear the form
         setCreateFormData({
-            title: '',
+            name: '',
             content: ''
         })
         // close the form
         setShowCreateForm(false)
         // create the comment in the backend
-        postComment({ ...createFormData, exercises: exercises._id })
-            .then(() => {
-                // refresh the comment section data
-                getNotes(exerciseData._id)
-                    .then(notes => up(notes))
-            })
+        postComment({ ...createFormData, exerciseId: exerciseId })
+            .then(() => refreshComments())
     }
 
 
     // conditionally render comments
-    let noteElements = [<p key='0' className='text-center'>No comments yet. Be the first to comment!</p>]
-    if (notes.length > 0) {
-        noteElements = notes.map(note => {
-            return <div
-                key={note._id}
-                className="bg-gray-100 rounded-lg p-4 my-4 border-gray-700 border-2 w-[80vw] mx-auto">
-                <p className="font-bold">{note.title}</p>
-                <p className="my-2">{note.content}</p>
-                <div className="flex justify-end">
-                    <button className="text-white hover:bg-gray-800 font-bold py-2 px-4 bg-gray-700 rounded cursor-pointer mr-2">
-                        Edit
-                    </button>
-                    <button className="bg-red-700 hover:bg-red-800 text-white font-bold py-2 px-4 rounded">
-                        Delete
-                    </button>
-                </div>
-            </div>
+    let commentElements = [<p key='0' className='text-center'>No comments yet. Be the first to comment!</p>]
+    if (comments.length > 0) {
+        commentElements = comments.map(comment => {
+            return <Comment
+                key={comment._id}
+                data={comment}
+                refreshComments={refreshComments}
+            />
         })
     }
 
@@ -88,7 +88,7 @@ export default function commentSection({ notes, exercises, updateNotes }) {
                         name="name"
                         className="px-2 py-1 w-full bg-gray-100"
                         placeholder="Your name"
-                        value={createFormData.title}
+                        value={createFormData.name}
                         onChange={handleInputChange}
                     />
                     <br />
@@ -106,7 +106,7 @@ export default function commentSection({ notes, exercises, updateNotes }) {
                     </button>
                 </form>
             }
-            {noteElements}
+            {commentElements}
         </div>
     )
 }

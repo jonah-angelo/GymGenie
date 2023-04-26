@@ -17,23 +17,26 @@ export async function getExercises() {
     return data
 }
 
-export async function createNote(note) {
-    const { data } = await axios.post('/api/notes', note)
+export async function getComments(exerciseId) {
+    console.log(exerciseId)
+    const { data } = await axios.get(`/api/comments/exercise/${exerciseId}`)
     return data
 }
 
-export async function deleteNote(id) {
-    const { data } = await axios.delete(`/api/notes/${id}`)
+
+export async function postComment(comment) {
+    console.log(comment)
+    const { data } = await axios.post('/api/comments', comment)
     return data
 }
 
-export async function updateNote (id, note) {
-    const { data } = await axios.put(`/api/notes/${id}`, note)
+
+export async function updateComment(comment, id) {
+    const { data } = await axios.put(`/api/comments/${id}`, comment)
     return data
 }
 
-export async function getNotes() {
-    const { data } = await axios.get('/api/notes')
+export async function deleteComment(id) {
+    const {data} = await axios.delete(`/api/comments/${id}`)
     return data
 }
-
