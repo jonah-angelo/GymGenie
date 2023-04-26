@@ -8,13 +8,6 @@ export default function HomePage() {
       <div>
         <img className="m-auto" src="/logo.png"></img>
       </div>
-      <div className="text-center bg-zinc-700 pb-4">
-        <h2 className="text-3xl pt-4">Your Workouts</h2>
-        <button><Link to="/WorkoutForm">Add Workout</Link></button>
-      </div>
-      <div className="workout-container">
-      </div>
-    
     </>
   )
 }

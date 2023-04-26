@@ -11,7 +11,6 @@ const mongodbUri = process.env.MONGODBURI;
 
 // Export models and seed data to `server.js`
 module.exports = {
-    Workout: require('./Workout'),
     User: require('./user'),
     Exercise: require('./exercise'),
     seedExercises: require('./seed'),

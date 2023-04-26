@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-export default function Exercise({ exerciseData, updateExerciseDetails }) {
+export default function Exercise({ exerciseData, updateDetails }) {
     return (
         <div>
         <div className="bg-grey"></div>
@@ -15,8 +15,8 @@ export default function Exercise({ exerciseData, updateExerciseDetails }) {
                         </p>
                     </div>
                     <div className="px-6 pt-4 pb-2">
-                        <Link to={'/exercise-details/' + exerciseData.id}
-                            onClick={() => {updateExerciseDetails(exerciseData)}}
+                        <Link to={'/exercise-details/' + exerciseData._id}
+                            onClick={() => {updateDetails(exerciseData)}}
                         >
                             <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                                 View Exercise

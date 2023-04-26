@@ -1,19 +1,14 @@
 import { Routes, Route, Link } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import HomePage from '../HomePage'
-import DetailsPage from '../DetailsPage'
 import AboutPage from '../AboutPage'
-import WorkoutForm from '../WorkoutForm'
 import './styles.css'
 import AuthFormPage from '../AuthFormPage'
 import ExercisePage from '../ExercisePage'
 import ExerciseDetails from '../ExerciseDetails'
 
 function App() {
-  const [workouts, setWorkouts] = useState([])
-  const [ExerciseDetails, setExerciseDetails] = useState()
-
-
+  const [detailsPage, setDetailsPage] = useState()
 
   return (
     <> 
@@ -41,12 +36,10 @@ function App() {
 
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/details/:id" element={<DetailsPage />} />
         <Route path="/about" element={<AboutPage />} />
-        <Route path="/WorkoutForm" element={<WorkoutForm exerciseData={ExerciseDetails}/>} />
         <Route path="/auth/:formType" element={<AuthFormPage />} />
         <Route path="/exercises" element={<ExercisePage />} />
-        <Route path="/exercise-details/:id" element={<ExerciseDetails exerciseData={ExerciseDetails} updateExerciseData={setExerciseDetails}/>} />
+        <Route path="/exercise-details/:id" element={<ExerciseDetails exerciseData={detailsPage} updateExerciseData={setDetailsPage}/>} />
       </Routes>
     </>
     

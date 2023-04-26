@@ -10,6 +10,7 @@ export default function ExercisePage() {
     const [exercisesPerPage, setExercisesPerPage] = useState(10);
     const [query, setQuery] = useState('');
     const [queryResults, setQueryResults] = useState([]);
+    const [detailsPage, setDetailsPage] = useState(false);
 
     useEffect(() => {
         getExercises()
@@ -31,7 +32,7 @@ export default function ExercisePage() {
 
     if (currentExercises.length > 0) {
         exerciseList = currentExercises.map((exercise, i) => {
-            return <Exercise key={i} exerciseData={exercise} />;
+            return <Exercise key={i} exerciseData={exercise}/>;
         });
     }
 
