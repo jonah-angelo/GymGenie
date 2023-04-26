@@ -6,9 +6,22 @@ import './styles.css'
 import AuthFormPage from '../AuthFormPage'
 import ExercisePage from '../ExercisePage'
 import ExerciseDetails from '../ExerciseDetails'
+import { getExercises } from '../../../utils/backend'
 
 function App() {
   const [detailsPage, setDetailsPage] = useState()
+  const [exercises, setExercises] = useState([])
+
+  useEffect(() => {
+    getExercises()
+    .then((exercises) => {
+        setExercises(exercises);
+    })
+    .catch((error) => {
+        console.error(error);
+    });
+}, []);
+  
 
   return (
     <> 
@@ -38,8 +51,8 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/auth/:formType" element={<AuthFormPage />} />
-        <Route path="/exercises" element={<ExercisePage />} />
-        <Route path="/exercise-details/:id" element={<ExerciseDetails exerciseData={detailsPage} updateExerciseData={setDetailsPage}/>} />
+        <Route path="/exercises" element={<ExercisePage exercises={exercises} updateExerciseData={setDetailsPage}/>} />
+        <Route path="/exercise-details/:id" element={<ExerciseDetails exerciseData={detailsPage}/>} />
       </Routes>
     </>
     

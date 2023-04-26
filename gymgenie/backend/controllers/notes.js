@@ -22,16 +22,14 @@ const db = require('../models')
 // Index Route (GET/Read): Will display all comments
 router.get('/', (req, res) => {
     db.Exercise.find({}, { notes: true, _id: false })
-        .then(workouts => {
+        .then(exercises => {
             // format query results to appear in one array, 
             // rather than an array of objects containing arrays 
             const flatList = []
             for (let exercise of exercises) {
-                flatList.push(...workout.notes)
+                flatList.push(...exercise.notes)
             }
-            res.json({
-                reviews: flatList
-            })
+            res.json(flatList)
         })
 });
 
@@ -57,9 +55,7 @@ router.get('/:id', (req, res) => {
         .then(exercise => {
             // format query results to appear in one object, 
             // rather than an object containing an array of one object
-            res.json({
-                review: exercise.notes
-            })
+            res.json(exercise.notes[0])
         })
 });
 

@@ -3,8 +3,8 @@ import { getExercises } from '../../../utils/backend';
 import { Link } from 'react-router-dom';
 import Exercise from '../Exercise';
 
-export default function ExercisePage() {
-    const [exercises, setExercises] = useState([]);
+export default function ExercisePage({ exercises, updateExerciseData }) {
+    // const [exercises, setExercises] = useState([]);
     const [page, setPage] = useState(1);
     // const [exerciseDetails, setExerciseDetails] = useState();
     const [exercisesPerPage, setExercisesPerPage] = useState(10);
@@ -12,15 +12,15 @@ export default function ExercisePage() {
     const [queryResults, setQueryResults] = useState([]);
     const [detailsPage, setDetailsPage] = useState(false);
 
-    useEffect(() => {
-        getExercises()
-        .then((exercises) => {
-            setExercises(exercises);
-        })
-        .catch((error) => {
-            console.error(error);
-        });
-    }, []);
+    // useEffect(() => {
+    //     getExercises()
+    //     .then((exercises) => {
+    //         setExercises(exercises);
+    //     })
+    //     .catch((error) => {
+    //         console.error(error);
+    //     });
+    // }, []);
 
 
     // Pagination
@@ -32,18 +32,29 @@ export default function ExercisePage() {
 
     if (currentExercises.length > 0) {
         exerciseList = currentExercises.map((exercise, i) => {
-            return <Exercise key={i} exerciseData={exercise}/>;
+            return <Exercise key={i} exerciseData={exercise} updateExerciseData={updateExerciseData}/>;
         });
     }
 
     function nextPage() {
         setPage(page + 1);
     }
-
+    
     function prevPage() {
         setPage(page - 1);
     }
 
+    // Seach Functionality
+    function handleChange(e) {
+        setQuery(e.target.value);
+    }
+
+    function handleSubmit(e) {
+        e.preventDefault();
+        
+    }
+
+    
 
     return (
         <div>

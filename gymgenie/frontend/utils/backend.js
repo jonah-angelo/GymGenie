@@ -27,3 +27,13 @@ export async function deleteNote(id) {
     return data
 }
 
+export async function updateNote (id, note) {
+    const { data } = await axios.put(`/api/notes/${id}`, note)
+    return data
+}
+
+export async function getNotes() {
+    const { data } = await axios.get('/api/notes')
+    return data
+}
+
