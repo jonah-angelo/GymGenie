@@ -7,7 +7,6 @@ export default function ExercisePage({ exercises, updateExerciseData }) {
     const [page, setPage] = useState(1);
     const [exercisesPerPage, setExercisesPerPage] = useState(10);
     const [exerciseFilter, setExerciseFilter] = useState('all');
-    const [query, setQuery] = useState('');
     const [filteredExercises, setFilteredExercises] = useState([]);
 
     useEffect(() => {

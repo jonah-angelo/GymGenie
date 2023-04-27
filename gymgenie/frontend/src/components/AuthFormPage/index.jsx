@@ -1,4 +1,16 @@
+import { useState } from 'react';
+
 export default function AuthFormPage() {
+    const [formData, setformData] = useState({
+        email: '',
+        password: '',
+    });
+
+const handleInputChange = (event) => {
+    setformData ({ ...formData, [event.target.name]: event.target.value });
+};
+
+
     return (
         <div className="flex items-center justify-center h-[90vh]">
             <div className="bg-gray-800 rounded-lg shadow-xl p-8 w-full max-w-md">
@@ -15,6 +27,8 @@ export default function AuthFormPage() {
                             type="email"
                             required
                             placeholder="Email address"
+                            value={formData.email}
+                            onChange={handleInputChange}
                         />
                     </div>
                     <div>
@@ -29,6 +43,8 @@ export default function AuthFormPage() {
                             minLength="6"
                             required
                             placeholder="Password"
+                            value={formData.password}
+                            onChange={handleInputChange}
                         />
                     </div>
                     <div>

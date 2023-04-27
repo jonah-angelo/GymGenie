@@ -25,18 +25,18 @@ export async function getComments(exerciseId) {
 
 
 export async function postComment(comment) {
-    console.log(comment)
-    const { data } = await axios.post('/api/comments', comment)
+    const { data } = await axios.post('/api/comments', comment, authHeader)
     return data
 }
 
 
 export async function updateComment(comment, id) {
-    const { data } = await axios.put(`/api/comments/${id}`, comment)
+    const { data } = await axios.put(`/api/comments/${id}`, comment, authHeader)
     return data
 }
 
+
 export async function deleteComment(id) {
-    const {data} = await axios.delete(`/api/comments/${id}`)
+    const { data } = await axios.delete(`/api/comments/${id}`, authHeader)
     return data
 }
