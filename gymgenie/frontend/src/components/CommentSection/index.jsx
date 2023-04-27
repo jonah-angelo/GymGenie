@@ -72,18 +72,18 @@ export default function commentSection({ exerciseId }) {
     }
 
     return (
-        <div className='comment-section bg-gray-300 rounded-lg p-4 pb-10 mt-4 space-y-4 relative'>
-            <h1 className='text-xl font-bold'>Viewer Insights</h1>
+        <div className='comment-section bg-gray-100 rounded-lg p-4 pb-10 mt-20 ml-0 space-y-9 relative'>
+            <h1 className='text-xl font-bold'>Exercise Reviews</h1>
             <button
                 onClick={toggleCreateForm}
-                className="top-0 right-5 absolute text-white hover:bg-green-800 font-bold py-2 px-4 bg-green-900 rounded cursor-pointer mr-2"
+                className="top-0 right-5 absolute text-white hover:bg-red-800 font-bold py-2 px-4 bg-gray-900 rounded cursor-pointer mr-2"
             >
                 {btnText}
             </button>
             {
                 showCreateForm && <form
                     onSubmit={handleSubmit}
-                    className="bg-gray-100 rounded-lg p-4 my-4 border-gray-700 border-2 w-[80vw] mx-auto text-right">
+                    className="bg-gray-100 rounded-lg p-4 my-4 border-gray-600 border-2 w-[80vw] mx-auto text-right">
                     <input
                         name="name"
                         className="px-2 py-1 w-full bg-gray-100"
