@@ -1,7 +1,8 @@
 import CommentSection from "../CommentSection"
 import { useState, useEffect } from 'react'
+import { getExercises } from "../../../utils/backend"
 
-export default function ExerciseDetails({ exerciseData }) {
+export default function ExerciseDetails({ exerciseData, setDetailsPage }) {
     let muscleimg = null
     if (exerciseData.muscle === "chest") {
         muscleimg = "https://i.imgur.com/2ZQ4Q3b.png"
@@ -25,10 +26,22 @@ export default function ExerciseDetails({ exerciseData }) {
         muscleimg = "https://i.imgur.com/2ZQ4Q3b.png"
     }
 
+    console.log(exerciseData._id)
+    useEffect(() => {
+        if(!exerciseData) {
+            getExercises(exerciseData._id)
+            .then(res => { 
+                setDetailsPage(res.data)
+            }
+            )
+        }
+    }, [])
 
-    return (
-        <>
-            <h1 className="text-center mt-9 mb-10 font-bold text-3xl">{exerciseData.name}</h1>
+    let page = <p>loading...</p>
+
+    if (exerciseData) {
+        page = <div>
+        <h1 className="text-center mt-9 mb-10 font-bold text-3xl">{exerciseData.name}</h1>
         <div className="">
             <img className="m-auto" src={muscleimg}></img>
             <p className="font-bold m-9">Muscle Group:</p>
@@ -41,6 +54,9 @@ export default function ExerciseDetails({ exerciseData }) {
         <div>
             <CommentSection exerciseId={exerciseData._id}/>
         </div>
-        </>
-    )
+            </div>
+    }
+
+    return page
+
 }

@@ -62,7 +62,7 @@ function App() {
         <Route path="/about" element={<AboutPage />} />
         <Route path="/auth/:formType" element={<AuthFormPage />} />
         <Route path="/exercises" element={<ExercisePage exercises={exercises} updateExerciseData={setDetailsPage}/>} />
-        <Route path="/exercise-details/:id" element={<ExerciseDetails exerciseData={detailsPage}/>} />
+        <Route path="/exercise-details/:id" element={<ExerciseDetails exerciseData={detailsPage} setDetailsPage={setDetailsPage}/>} />
       </Routes>
     </>
     

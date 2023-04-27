@@ -68,11 +68,6 @@ router.get('/', async (req, res) => {
         .then(users => res.json(users))
 })
 
-// LOG OUT (log out of a user account)
-router.get('/logout', (req, res) => {
-    res.cookie('jwt', '', { maxAge: 1 })
-    res.redirect('/')
-})
 
 
 /* Export these routes so that they are accessible in `server.js`
