@@ -48,7 +48,7 @@ function App() {
                 </li>
                 <li>
                   <Link to="/auth/login">
-                    <h4 className="text-white px-3 py-2 rounded-md text-sm font-medium bg-zinc-600 hover:bg-zinc-400 ease hover:shadow-md"> Login </h4>
+                    <h4 className="text-white px-3 py-2 rounded-md text-sm font-medium bg-zinc-600 hover:bg-zinc-400 ease hover:shadow-md "> Login </h4>
                   </Link>
                 </li>
               </ul>
