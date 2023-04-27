@@ -41,6 +41,16 @@ function App() {
                 <li>
                   <Link to="/exercises" className="text-white px-3 py-2 rounded-md text-sm font-medium bg-zinc-600 bg-zinc-600 hover:bg-zinc-400 hover:shadow-md"> Exercises </Link>
                 </li>
+                <li>
+                  <Link to="/auth/signup">
+                    <h4 className="text-white px-3 py-2 rounded-md text-sm font-medium bg-zinc-600 hover:bg-zinc-400 ease hover:shadow-md"> Sign Up </h4>
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/auth/login">
+                    <h4 className="text-white px-3 py-2 rounded-md text-sm font-medium bg-zinc-600 hover:bg-zinc-400 ease hover:shadow-md"> Login </h4>
+                  </Link>
+                </li>
               </ul>
             </div>
           </div>
