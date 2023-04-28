@@ -1,6 +1,4 @@
 import { useState, useEffect } from 'react';
-import { getExercises } from '../../../utils/backend';
-import { Link } from 'react-router-dom';
 import Exercise from '../Exercise';
 
 export default function ExercisePage({ exercises, updateExerciseData }) {
@@ -27,6 +25,7 @@ export default function ExercisePage({ exercises, updateExerciseData }) {
     const firstExercise = lastExercise - exercisesPerPage;
     const currentExercises = exercises.slice(firstExercise, lastExercise);
 
+    console.log(currentExercises);
     let exerciseList = <div>Loading...</div>;
 
     if (currentExercises.length > 0) {
