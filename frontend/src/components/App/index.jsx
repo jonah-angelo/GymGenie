@@ -22,6 +22,7 @@ function App() {
     });
 }, []);
   
+console.log(exercises)
 
   return (
     <>
