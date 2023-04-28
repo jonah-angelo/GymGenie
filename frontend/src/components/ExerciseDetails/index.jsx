@@ -5,7 +5,7 @@ import { getExercises } from "../../../utils/backend"
 export default function ExerciseDetails({ exerciseData, setDetailsPage }) {
     let muscleimg = null
 if (exerciseData.muscle === "biceps") {
-        muscleimg = "/biceps.png"
+        muscleimg = "/Biceps.png"
     } else if (exerciseData.muscle === "quadriceps") {
         muscleimg = "/quads.png"
     } else if (exerciseData.muscle === "forearms") {
