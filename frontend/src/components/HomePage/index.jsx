@@ -1,5 +1,5 @@
 import './styles.css'
-import { Link } from 'react-router-dom'
+
 
 export default function HomePage() {
   return (
@@ -10,7 +10,7 @@ export default function HomePage() {
       </div>
       <div className="bg-zinc-700 h-screen shadow-sm">
         <p className='text-3xl text-left font-extrabold pb-30 mt-20 pt-10 pl-9'>Start Your Fitness Journey Today!</p>
-        <img className="p-10" src="/public/Gym.jpeg"></img>
+        <img className="p-10" src="/Gym.jpeg"></img>
       </div>
     </>
   )
