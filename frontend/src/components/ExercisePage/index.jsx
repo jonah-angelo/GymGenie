@@ -28,11 +28,11 @@ export default function ExercisePage({ exercises, updateExerciseData }) {
     console.log(currentExercises);
     let exerciseList = <div>Loading...</div>;
 
-    if (currentExercises.length > 0) {
-        exerciseList = currentExercises.map((exercise, i) => {
-            return <Exercise key={i} exerciseData={exercise} updateExerciseData={updateExerciseData}/>;
-        });
-    }
+    // if (currentExercises.length > 0) {
+    //     exerciseList = currentExercises.map((exercise, i) => {
+    //         return <Exercise key={i} exerciseData={exercise} updateExerciseData={updateExerciseData}/>;
+    //     });
+    // }
 
     function nextPage() {
         setPage(page + 1);
