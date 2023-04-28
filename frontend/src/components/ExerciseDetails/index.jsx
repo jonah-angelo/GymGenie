@@ -4,26 +4,12 @@ import { getExercises } from "../../../utils/backend"
 
 export default function ExerciseDetails({ exerciseData, setDetailsPage }) {
     let muscleimg = null
-    if (exerciseData.muscle === "chest") {
-        muscleimg = "https://i.imgur.com/2ZQ4Q3b.png"
-    } else if (exerciseData.muscle === "back") {
-        muscleimg = "https://i.imgur.com/2ZQ4Q3b.png"
-    } else if (exerciseData.muscle === "shoulders") {
-        muscleimg = "https://i.imgur.com/2ZQ4Q3b.png"
-    } else if (exerciseData.muscle === "biceps") {
-        muscleimg = "/public/biceps.png"
-    } else if (exerciseData.muscle === "triceps") {
-        muscleimg = "https://i.imgur.com/2ZQ4Q3b.png"
+if (exerciseData.muscle === "biceps") {
+        muscleimg = "/biceps.png"
     } else if (exerciseData.muscle === "quadriceps") {
-        muscleimg = "/public/quads.png"
-    } else if (exerciseData.muscle === "abdominals") {
-        muscleimg = "https://i.imgur.com/2ZQ4Q3b.png"
-    } else if (exerciseData.muscle === "calves") {
-        muscleimg = "/public/calves.png"
+        muscleimg = "/quads.png"
     } else if (exerciseData.muscle === "forearms") {
-        muscleimg = "/public/forearms.png"
-    } else {
-        muscleimg = "https://i.imgur.com/2ZQ4Q3b.png"
+        muscleimg = "/forearms.png"
     }
 
     console.log(exerciseData._id)
